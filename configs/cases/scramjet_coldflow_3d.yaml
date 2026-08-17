@@ -1,0 +1,32 @@
+# ============================================================================
+# scramjet_coldflow_3d.yaml -- 3D (extruded) cold-flow test case.
+# The 2D channel profile is swept along z by ``geometry.span``; the z-planes
+# are slip (Euler) sides, i.e. an infinitely-constant-span scramjet. Mesh
+# sizes are coarser than the 2D case to keep the 3D smoke affordable.
+# ============================================================================
+include: configs/base.yaml
+
+flow:
+  mach: 6.0
+
+geometry:
+  capture_height: 0.10
+  span: 0.12               # engine span / extrusion depth [m]
+
+mesh:
+  h_far: 0.008
+  h_inlet: 0.006
+  h_isolator: 0.006
+  h_combustor: 0.005
+  h_nozzle: 0.006
+  bl_thickness: 0.004
+  size_scale: 2.2
+
+case:
+  name: scramjet_coldflow_3d
+  dimension: 3
+  domain: cold_flow
+  description: >-
+    Mach 6 cold-flow 3D case: same profile as scramjet_coldflow_2d extruded
+    to a 0.12 m span. Slip side walls at z=0 and z=B (spanwise convergence
+    proxy), RANS warm start, coarse sizing for a quick smoke.

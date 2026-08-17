@@ -1,0 +1,52 @@
+# ── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+
+# ── Environment / secrets (nunca commitar credenciais) ───────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# ── Node / Electron UI ────────────────────────────────────────────────
+node_modules/
+ui/node_modules/
+ui/out/
+ui/dist/
+ui/build/
+ui/*.log
+ui/runs/
+npm-debug.log*
+
+# ── Solver artifacts (gerados em runtime) ─────────────────────────────
+*.su2
+*.msh
+*.geo_unrolled
+restart_flow.dat
+*.vtu
+*.vtk
+*.csv
+*.pkl
+*.npz
+*.png
+*.gif
+
+# ── Runs / experiments / logs locais ──────────────────────────────────
+runs/
+results/
+*.log
+*.err
+scratch/
+
+# ── Editors / OS ──────────────────────────────────────────────────────
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

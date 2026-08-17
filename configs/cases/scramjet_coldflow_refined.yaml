@@ -1,0 +1,29 @@
+# ============================================================================
+# scramjet_coldflow_refined.yaml -- OPT-IN: y+~1 prism boundary-layer mesh.
+#
+# This is the "research-grade" mesh that the lab was originally targeting
+# (h_wall_n = 1e-5 m, first-layer height for y+ ~ 1 at Mach 6).
+#
+# STATUS: KNOWN-UNSTABLE in the SU2 8.2 CUDA build.
+#   The prism field at these walls triggers a slow total-energy divergence
+#   after a few hundred iterations (Euler and RANS, CFL 0.1-1.0, MUSCL on/off,
+#   with and without the gmsh corner slivers). The isotropic mesh in
+#   scramjet_coldflow.yaml converges both RANS stages instead.
+#
+# TODO (open item) - candidate fixes, in order of likely payoff:
+#   1. Blunt the sharp strut leading/trailing tips (the prism fronts collide
+#      there) and soften bl_ratio/bl_thickness.
+#   2. Ramp CFL via CFL_ADAPT instead of a fixed cold-start CFL.
+#   3. Sweep h_wall_n upward (2e-4 was density-stable but unstarted).
+#
+# To use:  python run_sim.py --case configs/cases/scramjet_coldflow_refined.yaml
+# ============================================================================
+include: configs/base.yaml
+
+case:
+  name: scramjet_coldflow_2d_refined
+  dimension: 2
+  domain: cold_flow
+  description: >-
+    Mach 6 cold-flow case with a y+~1 prism boundary layer on the walls.
+    Numerical research mesh; currently NOT SU2-stable (see header).

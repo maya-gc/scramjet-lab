@@ -1,0 +1,36 @@
+# ============================================================================
+# scramjet_coldflow.yaml -- reference cold-flow test case (SU2-stable default).
+# Includes base defaults; every parameter can be overridden from the CLI:
+#   python run_sim.py --case configs/cases/scramjet_coldflow.yaml \
+#       --overrides flow.mach=5.0 geometry.isolator_length=0.30
+#
+# NOTE (mesh): the default mesh is fully isotropic and the boundary-layer
+# prism field is DISABLED. SU2 8.2 (Harrier, CUDA build) is numerically
+# unstable on the y+~1 prism mesh for this Mach 6 internal flow (slow energy
+# divergence after a few hundred iterations, all CFL/scheme combinations
+# tested); the isotropic mesh converges both RANS stages. Re-enable the
+# prism boundary layer for a sensitivity study via scramjet_coldflow_refined.yaml.
+# ============================================================================
+include: configs/base.yaml
+
+case:
+  name: scramjet_coldflow_2d
+  dimension: 2
+  domain: cold_flow
+  description: >-
+    Reference Mach 6 cold-flow case: H=0.10 m capture, CR=2.5 internal
+    compression inlet (6 deg ramp), 0.40 m isolator, 0.25 m combustor with
+    a 10 mm symmetric strut, 0.60 m single-sided nozzle (ER=2.0).
+
+# SU2-stable isotropic mesh (no prism boundary layer). These settings match
+# configs/cases/scramjet_coldflow_iso.yaml; kept inline so the reference case
+# works out of the box.
+mesh:
+  h_far: 0.006
+  h_inlet: 0.003
+  h_isolator: 0.002
+  h_combustor: 0.0015
+  h_nozzle: 0.003
+  h_wall_n: 0.0015
+  bl_thickness: 0.0
+  bl_ratio: 1.15

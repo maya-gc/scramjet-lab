@@ -1,0 +1,61 @@
+# ============================================================================
+# base.yaml -- shared defaults for every scramjet case.
+# Case files include this file; per-case keys override these defaults.
+# All physical units are SI (m, Pa, K, kg/s per metre of span, N/m).
+# ============================================================================
+
+flow:
+  mach: 6.0                  # freestream Mach number at the capture plane
+  p_inf: 1188.0              # freestream static pressure [Pa] (~30 km ISA)
+  t_inf: 226.5               # freestream static temperature [K]
+  gamma: 1.4                 # ratio of specific heats
+  R: 287.058                 # specific gas constant [J/kg/K]
+  turbulence_intensity: 0.001        # freestream Tu for k-omega SST
+  turbulence_length_scale: 0.001     # freestream turbulent length scale [m]
+
+geometry:
+  capture_height: 0.10       # H: height of the capture plane [m]
+  contraction_ratio: 2.5     # H / H_isolator (internal compression)
+  intake_angle_deg: 6.0      # internal ramp half-angle [deg]
+  isolator_length: 0.40      # constant-area isolator length [m]
+  combustor_length: 0.25     # combustor length [m]
+  combustor_divergence_deg: 1.0   # channel expansion half-angle in combustor [deg]
+  nozzle_length: 0.60        # nozzle axial length [m]
+  nozzle_expansion_ratio: 2.0     # H_exit / H_isolator
+  strut_enabled: true        # add a symmetric wedge strut in the combustor
+  strut_length: 0.10         # strut axial length [m]
+  strut_height: 0.010        # strut maximum thickness [m]
+  strut_pos_frac: 0.30       # strut location as a fraction of combustor length
+
+mesh:
+  h_far: 0.004               # background (unrefined) element size [m]
+  h_inlet: 0.0025            # inlet / ramp region [m]
+  h_isolator: 0.0015         # isolator (shock train) [m]
+  h_combustor: 0.0012        # combustor + strut wake [m]
+  h_nozzle: 0.0025           # nozzle [m]
+  h_wall_n: 1.0e-5           # first-cell height at walls [m] (target y+ ~ 1).
+                             # OPT-IN: prism BL is disabled in the default case
+                             # (see scramjet_coldflow.yaml); these values apply
+                             # only when bl_thickness > 0 (refined variant).
+  bl_thickness: 0.008        # boundary-layer prism-layer total thickness [m]
+  bl_ratio: 1.15             # boundary-layer growth ratio
+
+solver:
+  cfl: 1.0                   # nominal CFL for the restart (stage 2)
+  max_iter: 5000             # max RANS iterations per stage
+  euler_init: true           # two-stage solve: stage 1 = RANS cold start
+                             # (MUSCL NO, CFL min(0.1, cfl) for robustness),
+                             # stage 2 = RANS restart from stage-1 restart file
+  residual_target: 1.0e-9    # RMS density convergence target
+  linear_solver_error: 1.0e-4
+
+case:
+  name: scramjet_coldflow_2d
+  dimension: 2               # 2 = planar 2D (per unit span)
+  domain: cold_flow          # no heat addition, non-reacting
+  description: Mach 6 cold-flow 2D scramjet, internal compression inlet,
+    isolator, strut-wake combustor, single-sided nozzle
+
+
+
+

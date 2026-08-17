@@ -1,0 +1,7 @@
+# Parametric sweep over isolator length and intake angle (3x3 = 9 CFD runs).
+base: configs/cases/scramjet_coldflow.yaml
+steps: [geometry, mesh, case, run, post, metrics]
+workdir: runs/sweep_isolator
+parameters:
+  geometry.isolator_length: [0.30, 0.40, 0.50]
+  geometry.intake_angle_deg: [5.0, 6.0, 7.0]

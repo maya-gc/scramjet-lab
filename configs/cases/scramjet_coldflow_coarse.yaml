@@ -1,0 +1,21 @@
+# ============================================================================
+# scramjet_coldflow_coarse.yaml -- coarse test to isolate a SU2 heap-corruption.
+# Same case as scramjet_coldflow but with relaxed mesh sizes.
+# ============================================================================
+include: configs/base.yaml
+
+case:
+  name: scramjet_coldflow_2d
+  dimension: 2
+  domain: cold_flow
+  description: coarse-mesh diagnostic variant
+
+mesh:
+  h_far: 0.010
+  h_inlet: 0.006
+  h_isolator: 0.004
+  h_combustor: 0.003
+  h_nozzle: 0.006
+  h_wall_n: 5.0e-5
+  bl_thickness: 0.008
+  bl_ratio: 1.15

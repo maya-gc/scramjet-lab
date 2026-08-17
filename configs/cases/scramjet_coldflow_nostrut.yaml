@@ -1,0 +1,23 @@
+# ============================================================================
+# scramjet_coldflow_nostrut.yaml -- isotropic mesh, strut DISABLED.
+# ============================================================================
+include: configs/base.yaml
+
+case:
+  name: scramjet_coldflow_2d
+  dimension: 2
+  domain: cold_flow
+  description: no-strut isotropic diagnostic variant
+
+geometry:
+  strut_enabled: false
+
+mesh:
+  h_far: 0.006
+  h_inlet: 0.003
+  h_isolator: 0.002
+  h_combustor: 0.0015
+  h_nozzle: 0.003
+  h_wall_n: 0.0015
+  bl_thickness: 0.0
+  bl_ratio: 1.15

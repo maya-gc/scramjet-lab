@@ -1,0 +1,20 @@
+# scramjet-lab core dependencies (Python 3.10+)
+numpy>=1.24
+PyYAML>=6.0
+
+# Parametric meshing (Gmsh SDK, Python 3.8+)
+gmsh>=4.11
+
+# Post-processing and visualization
+pyvista>=0.42
+matplotlib>=3.7
+scipy>=1.10  # griddata (ramjet3d/crosssection) + CubicSpline (vehicle)
+Pillow>=10.0 # GIF writing (viz helpers)
+
+# Tabular export for ML/optimization
+pandas>=2.0
+
+# ── Optional: GPU-accelerated post-processing ────────────────────────
+# The backend falls back to numpy when CuPy is unavailable. Only install
+# one matching your CUDA runtime, e.g. for CUDA 12.x:
+# cupy-cuda12x>=13.0
