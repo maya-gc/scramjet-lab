@@ -160,11 +160,3 @@ python tests/test_postprocess_synthetic.py   # requer pyvista
 | `docs/MODELING.md` | modelo físico, geometria, malha, condições de contorno |
 | `docs/VALIDATION.md` | checklist de validação e benchmarks |
 | `docs/ROADMAP.md` | evolução em fases (2D -> 3D -> combustão -> otimização) |
-
-## Publicar no GitHub
-
-Este repositório é limpo para publicação: nenhum caminho local, credencial ou
-artefato de runtime é versionado. O `.gitignore` cobre ambientes virtuais,
-`node_modules/`, builds, `runs/` (experimentos), logs, malhas/soluções
-geradas e arquivos de ambiente/secrets. O token RPC é gerado em runtime e
-nunca é persistido.
